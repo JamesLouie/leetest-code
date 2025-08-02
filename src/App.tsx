@@ -5,6 +5,9 @@ interface PageData {
   title: string;
   url: string;
   timestamp: string;
+  isLeetCodeProblem?: boolean;
+  problemSlug?: string;
+  pageType?: string;
 }
 
 interface Settings {
@@ -61,6 +64,8 @@ function App() {
     chrome.runtime.sendMessage({ action: 'saveSettings', settings: newSettings })
   }
 
+  const isLeetCodeProblem = pageData?.isLeetCodeProblem || false
+
   return (
     <div className={`app ${settings.theme}`}>
       <header className="header">
@@ -84,15 +89,46 @@ function App() {
         {pageData && (
           <section className="page-info">
             <h3>Current Page</h3>
-            <div className="info-item">
-              <strong>Title:</strong> {pageData.title}
-            </div>
-            <div className="info-item">
-              <strong>URL:</strong> {pageData.url}
-            </div>
-            <div className="info-item">
-              <strong>Timestamp:</strong> {new Date(pageData.timestamp).toLocaleString()}
-            </div>
+            
+            {isLeetCodeProblem ? (
+              <div className="leetcode-info">
+                <div className="info-item">
+                  <strong>🔗 LeetCode Problem:</strong> {pageData.problemSlug}
+                </div>
+                <div className="info-item">
+                  <strong>📄 Page Type:</strong> {pageData.pageType}
+                </div>
+                <div className="info-item">
+                  <strong>📝 Title:</strong> {pageData.title}
+                </div>
+                <div className="info-item">
+                  <strong>⏰ Detected:</strong> {new Date(pageData.timestamp).toLocaleString()}
+                </div>
+                <div className="leetcode-status">
+                  <span className="status-badge active">✅ Extension Active on LeetCode</span>
+                </div>
+              </div>
+            ) : (
+              <div className="regular-page-info">
+                <div className="info-item">
+                  <strong>Title:</strong> {pageData.title}
+                </div>
+                <div className="info-item">
+                  <strong>URL:</strong> {pageData.url}
+                </div>
+                <div className="info-item">
+                  <strong>Timestamp:</strong> {new Date(pageData.timestamp).toLocaleString()}
+                </div>
+                {pageData.pageType && (
+                  <div className="info-item">
+                    <strong>Page Type:</strong> {pageData.pageType}
+                  </div>
+                )}
+                <div className="page-status">
+                  <span className="status-badge inactive">ℹ️ Not a LeetCode Problem Page</span>
+                </div>
+              </div>
+            )}
           </section>
         )}
 
@@ -111,6 +147,30 @@ function App() {
             </button>
           </div>
         </section>
+
+        {isLeetCodeProblem && (
+          <section className="leetcode-features">
+            <h3>🚀 LeetCode Features</h3>
+            <div className="feature-list">
+              <div className="feature-item">
+                <span>📊 Problem Analysis</span>
+                <span className="feature-status">Coming Soon</span>
+              </div>
+              <div className="feature-item">
+                <span>🎯 Difficulty Assessment</span>
+                <span className="feature-status">Coming Soon</span>
+              </div>
+              <div className="feature-item">
+                <span>💡 Solution Hints</span>
+                <span className="feature-status">Coming Soon</span>
+              </div>
+              <div className="feature-item">
+                <span>📈 Progress Tracking</span>
+                <span className="feature-status">Coming Soon</span>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
     </div>
   )

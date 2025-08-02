@@ -1,20 +1,23 @@
 {
   "manifest_version": 3,
-  "name": "Leetest Code Extension",
+  "name": "Leetest Code - LeetCode Problem Analyzer",
   "version": "1.0.0",
-  "description": "A Chrome extension built with Vite and React",
+  "description": "A Chrome extension that analyzes LeetCode problems and provides intelligent feedback to help improve problem-solving skills",
   "permissions": [
     "activeTab",
     "storage"
   ],
   "action": {
     "default_popup": "index.html",
-    "default_title": "Leetest Code"
+    "default_title": "Leetest Code - LeetCode Analyzer"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["src/content/content.js"]
+      "matches": [
+        "https://leetcode.com/problems/*"
+      ],
+      "js": ["src/content/content.js"],
+      "run_at": "document_end"
     }
   ],
   "background": {
@@ -23,7 +26,12 @@
   "web_accessible_resources": [
     {
       "resources": ["src/assets/*"],
-      "matches": ["<all_urls>"]
+      "matches": ["https://leetcode.com/*", "https://leetcode.cn/*"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "assets/icon.svg",
+    "48": "assets/icon.svg",
+    "128": "assets/icon.svg"
+  }
 }
