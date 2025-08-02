@@ -104,7 +104,7 @@ export function extractProblemSlug(url: string): string | null {
   try {
     const urlObj = new URL(url);
     const pathname = urlObj.pathname;
-    const match = pathname.match(/\/problems\/([^\/]+)/);
+    const match = pathname.match(/\/problems\/([^/]+)/);
     return match ? match[1] : null;
   } catch (error) {
     console.error('Error extracting problem slug:', error);
