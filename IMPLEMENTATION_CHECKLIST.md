@@ -3,9 +3,22 @@
 ## 📋 Project Overview
 **Goal**: Create a Chrome extension that reads LeetCode problem pages and provides intelligent feedback to help users improve their problem-solving skills.
 
+### 🏗️ Architecture
+- **App.tsx**: Thin wrapper component that renders the Popup component
+- **popup/Popup.tsx**: Main popup logic and UI components
+- **popup/Popup.css**: Popup-specific styles
+- **popup/index.ts**: Export file for popup components
+
 ---
 
 ## ✅ Phase 1: LeetCode Page Detection & Data Extraction (Priority 1)
+
+### 1.0 Code Organization & Architecture
+- [x] **Refactor App.tsx to be a thin wrapper**
+  - [x] Move main logic to popup/Popup.tsx
+  - [x] Move styles to popup/Popup.css
+  - [x] Create popup/index.ts for exports
+  - [x] Keep App.tsx minimal and focused
 
 ### 1.1 LeetCode Page Detection
 - [x] **Create LeetCode URL detection function**
