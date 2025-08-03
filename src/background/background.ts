@@ -53,3 +53,19 @@ chrome.tabs.onUpdated.addListener((_tabId, changeInfo, tab) => {
     // Add any tab-specific logic here
   }
 });
+
+// Handle keyboard commands
+chrome.commands.onCommand.addListener((command) => {
+  console.log('Command received:', command);
+  
+  if (command === '_execute_action') {
+    // Open the popup as a new window since chrome.action.openPopup() doesn't exist in Manifest V3
+    chrome.windows.create({
+      url: chrome.runtime.getURL('index.html'),
+      type: 'popup',
+      width: 400,
+      height: 600,
+      focused: true
+    });
+  }
+});

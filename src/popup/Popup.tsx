@@ -71,6 +71,9 @@ export function Popup() {
       <header className="header">
         <h1>🧩 Leetest Code</h1>
         <p>Chrome Extension with Vite + React</p>
+        <div className="hotkey-info">
+          <span>💡 Hotkey: {navigator.platform.includes('Mac') ? 'Cmd+Shift+I' : 'Ctrl+Shift+I'}</span>
+        </div>
       </header>
       
       <main className="main">

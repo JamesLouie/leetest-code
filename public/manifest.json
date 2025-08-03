@@ -5,11 +5,21 @@
   "description": "A Chrome extension that analyzes LeetCode problems and provides intelligent feedback to help improve problem-solving skills",
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "windows"
   ],
   "action": {
     "default_popup": "index.html",
     "default_title": "Leetest Code - LeetCode Analyzer"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+I",
+        "mac": "Command+Shift+I"
+      },
+      "description": "Open Leetest Code popup"
+    }
   },
   "content_scripts": [
     {
